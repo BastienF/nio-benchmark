@@ -23,7 +23,7 @@ public final class HelloRequestHandler implements HttpAsyncRequestHandler<HttpRe
     public void handle(final HttpRequest request, final HttpAsyncExchange httpexchange, final HttpContext context) {
         HttpResponse response = httpexchange.getResponse();
         response.setStatusCode(HttpStatus.SC_OK);
-        response.setEntity(new NStringEntity("Hello world", ContentType.create("text/html", "UTF-8")));
+        response.setEntity(new NStringEntity(request.getRequestLine().toString(), ContentType.create("text/html", "UTF-8")));
         httpexchange.submitResponse();
     }
 }

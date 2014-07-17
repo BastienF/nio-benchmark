@@ -8,7 +8,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>AsyncHelloServlet</servlet-name>
-		<servlet-class>com.octo.niobenchmark.servlet.async.AsyncHelloServlet</servlet-class>
+		<servlet-class>com.octo.niobenchmark.servlet.async.AsyncLatenctyServlet</servlet-class>
 		<async-supported>true</async-supported>
 	</servlet>
 	<servlet>

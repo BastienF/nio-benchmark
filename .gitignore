@@ -6,3 +6,11 @@
 .classpath
 .project
 /.settings
+
+# IntelliJ files
+.idea
+*.iml
+
+# Emacs
+*~
+*#

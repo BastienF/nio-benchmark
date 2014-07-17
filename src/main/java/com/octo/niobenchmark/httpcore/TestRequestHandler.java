@@ -1,9 +1,7 @@
 package com.octo.niobenchmark.httpcore;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
+import com.octo.niobenchmark.Parameters;
+import com.octo.niobenchmark.httpcore.async.latency.AsyncLatencyServer;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -21,7 +19,9 @@ import org.apache.http.nio.protocol.HttpAsyncRequestHandler;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-import com.octo.niobenchmark.Parameters;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public final class TestRequestHandler implements
 		HttpAsyncRequestHandler<HttpRequest> {
@@ -47,7 +47,7 @@ public final class TestRequestHandler implements
 	@Override
 	public void handle(final HttpRequest request,
 			final HttpAsyncExchange httpexchange, final HttpContext context) {
-		HttpGet httpGet = new HttpGet(HelloServer.SLOW_HELLO_URL);
+		HttpGet httpGet = new HttpGet(AsyncLatencyServer.URL);
 
 		FutureCallback<HttpResponse> responseCallback = new FutureCallback<HttpResponse>() {
 

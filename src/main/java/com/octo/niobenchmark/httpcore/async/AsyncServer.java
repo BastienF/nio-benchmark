@@ -1,6 +1,4 @@
-package com.octo.niobenchmark.httpcore;
-
-import java.net.InetSocketAddress;
+package com.octo.niobenchmark.httpcore.async;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.impl.nio.DefaultHttpServerIODispatch;
@@ -14,11 +12,9 @@ import org.apache.http.nio.protocol.HttpAsyncService;
 import org.apache.http.nio.protocol.UriHttpAsyncRequestHandlerMapper;
 import org.apache.http.nio.reactor.IOEventDispatch;
 import org.apache.http.nio.reactor.ListeningIOReactor;
-import org.apache.http.protocol.HttpProcessor;
-import org.apache.http.protocol.HttpProcessorBuilder;
-import org.apache.http.protocol.ResponseConnControl;
-import org.apache.http.protocol.ResponseContent;
-import org.apache.http.protocol.ResponseDate;
+import org.apache.http.protocol.*;
+
+import java.net.InetSocketAddress;
 
 public class AsyncServer {
 	private final UriHttpAsyncRequestHandlerMapper uriMapper = new UriHttpAsyncRequestHandlerMapper();
