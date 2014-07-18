@@ -6,7 +6,7 @@ do
     case "$1" in
   --cpu-time) cpuTime="$2"; shift;;
   --latency-time) latencyTime="$2"; shift;;
-  --async) aws=true;;
+  --async) async=true;;
   -*) echo >&2 \
       "wrong var: usage: $0 --cpu-time time --latency-time time [--async]"
       exit 1;;
@@ -34,11 +34,11 @@ fi
 if [ "$async" = true ] ; then
 	latencyServer="./target/AsyncLatencyServer.jar"
 	cpuServer="./target/AsyncCPUServer.jar"
-	cpuURL="http://localhost:8082/war/async/cpu"
+	cpuURL="http://localhost:8089/war/async/cpu"
 else
 	latencyServer="./target/SyncLatencyServer.jar"
 	cpuServer="./target/SyncCPUServer.jar"
-	cpuURL="http://localhost:8082/war/sync/cpu"
+	cpuURL="http://localhost:8089/war/sync/cpu"
 fi
 
 java -jar $latencyServer &

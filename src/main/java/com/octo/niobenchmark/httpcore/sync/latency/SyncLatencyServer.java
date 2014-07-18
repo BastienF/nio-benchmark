@@ -7,9 +7,9 @@ import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 public class SyncLatencyServer {
 	
 	private static final int THREADS = 200;
-	public static final int PORT = 8081;
+	public static final int PORT = 8090;
 
-    public static final String URL = "http://localhost:8081/war/sync/latency";
+    public static final String URL = "http://localhost:8090/war/sync/latency";
 
 	public static void main(String[] args) throws Exception {
         ConsumeCPU.consumeCpuInMillisecond(1000);

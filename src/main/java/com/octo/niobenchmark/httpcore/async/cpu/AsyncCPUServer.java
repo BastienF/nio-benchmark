@@ -7,7 +7,7 @@ import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 public class AsyncCPUServer {
 	
 	private static final int THREADS = 1;
-	public static final int PORT = 8082;
+	public static final int PORT = 8089;
 	
 	public static final String CPU_URL = "http://localhost:"
 			+ AsyncCPUServer.PORT + "/war/cpu";
