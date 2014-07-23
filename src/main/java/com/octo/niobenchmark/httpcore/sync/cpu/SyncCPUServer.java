@@ -6,7 +6,7 @@ import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 
 public class SyncCPUServer {
 	
-	private static final int THREADS = 1;
+	private static final int THREADS = 10000;
 	public static final int PORT = 8089;
 	
 	public static final String CPU_URL = "http://localhost:"
