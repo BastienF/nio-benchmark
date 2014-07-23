@@ -41,12 +41,12 @@ else
 	cpuURL="http://localhost:8089/war/sync/cpu"
 fi
 
-java -jar $latencyServer &
-WAITPID_LATENCY=$!
-java -jar $cpuServer &
-WAITPID_CPU=$!
-sleep 1
+#java -jar $latencyServer &
+#WAITPID_LATENCY=$!
+#java -jar $cpuServer &
+#WAITPID_CPU=$!
+#sleep 1
 echo "$cpuURL?cpu=$cpuTime&latency=$latencyTime"
-ab -r -k -c10000 -n1000000 "$cpuURL?cpu=$cpuTime&latency=$latencyTime"
-kill -9 $WAITPID_LATENCY
-kill -9 $WAITPID_CPU
+ab -r -k -c10000 -n100000 "$cpuURL?cpu=$cpuTime&latency=$latencyTime"
+#kill -9 $WAITPID_LATENCY
+#kill -9 $WAITPID_CPU
