@@ -4,6 +4,10 @@ import com.octo.niobenchmark.httpcore.async.latency.AsyncLatencyServer;
 import com.octo.niobenchmark.httpcore.util.ConsumeCPU;
 import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.entity.ContentType;
+import org.apache.http.nio.entity.NStringEntity;
 import org.apache.http.nio.protocol.BasicAsyncRequestConsumer;
 import org.apache.http.nio.protocol.HttpAsyncExchange;
 import org.apache.http.nio.protocol.HttpAsyncRequestConsumer;
@@ -36,6 +40,12 @@ public final class AsyncCPURequestHandler implements HttpAsyncRequestHandler<Htt
                     ConsumeCPU.consumeCpuInMillisecond(cpu);
                 if (Integer.valueOf(latency) >= 0)
                     HTTPRequest.sendReactiveRequest(AsyncLatencyServer.URL, Collections.singletonMap("latency", latency), httpexchange);
+                else {
+                    HttpResponse responseSend = httpexchange.getResponse();
+                    responseSend.setStatusCode(HttpStatus.SC_OK);
+                    responseSend.setEntity(new NStringEntity("Ok", ContentType.create("text/html", "UTF-8")));
+                    httpexchange.submitResponse();
+                }
             }
         });
     }
