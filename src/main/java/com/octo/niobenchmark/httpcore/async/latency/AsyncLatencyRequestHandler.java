@@ -1,6 +1,6 @@
 package com.octo.niobenchmark.httpcore.async.latency;
 
-import com.octo.niobenchmark.Parameters;
+import com.octo.niobenchmark.httpcore.util.GaussianGenerator;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.apache.http.nio.protocol.HttpAsyncRequestHandler;
 import org.apache.http.protocol.HttpContext;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public final class AsyncLatencyRequestHandler implements HttpAsyncRequestHandler<HttpRequest> {
@@ -28,7 +27,7 @@ public final class AsyncLatencyRequestHandler implements HttpAsyncRequestHandler
     @Override
     public void handle(final HttpRequest request, final HttpAsyncExchange httpexchange, final HttpContext context) {
         int latency = Integer.valueOf(request.getRequestLine().getUri().split("\\?")[1].split("\\=")[1]);
-        long gaussedLatency = Math.round(latency * AsyncLatencyServer.GAUSSIANS_VALUES[ThreadLocalRandom.current().nextInt(0, Parameters.GAUSSIANS_SIZE)]);
+        long gaussedLatency = Math.round(latency * GaussianGenerator.getValue());
         executor.schedule(new Runnable() {
             @Override
             public void run() {

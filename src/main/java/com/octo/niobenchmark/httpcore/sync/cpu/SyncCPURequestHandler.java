@@ -2,6 +2,7 @@ package com.octo.niobenchmark.httpcore.sync.cpu;
 
 import com.octo.niobenchmark.httpcore.sync.latency.SyncLatencyServer;
 import com.octo.niobenchmark.httpcore.util.ConsumeCPU;
+import com.octo.niobenchmark.httpcore.util.GaussianGenerator;
 import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
@@ -32,7 +33,7 @@ public final class SyncCPURequestHandler implements HttpRequestHandler {
             @Override
             public void run() {
                 if (cpu >= 0)
-                    ConsumeCPU.consumeCpuInMillisecond(cpu);
+                    ConsumeCPU.consumeCpuInMillisecond(Math.round(cpu * GaussianGenerator.getValue()));
                 if (Integer.valueOf(latency) >= 0)
                     HTTPRequest.sendRequest(SyncLatencyServer.URL, Collections.singletonMap("latency", latency));
                 response.setStatusCode(HttpStatus.SC_OK);

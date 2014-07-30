@@ -2,6 +2,7 @@ package com.octo.niobenchmark.httpcore.sync.cpu;
 
 import com.octo.niobenchmark.httpcore.sync.SyncServer;
 import com.octo.niobenchmark.httpcore.util.ConsumeCPU;
+import com.octo.niobenchmark.httpcore.util.GaussianGenerator;
 import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 
 public class SyncCPUServer {
@@ -16,6 +17,7 @@ public class SyncCPUServer {
 
         ConsumeCPU.consumeCpuInMillisecond(1000);
         HTTPRequest.init();
+        GaussianGenerator.init();
         SyncServer syncServer = new SyncServer(THREADS, PORT);
         syncServer.register("/war/sync/cpu", new SyncCPURequestHandler());
         syncServer.start();

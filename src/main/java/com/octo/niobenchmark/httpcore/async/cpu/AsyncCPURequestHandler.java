@@ -2,6 +2,7 @@ package com.octo.niobenchmark.httpcore.async.cpu;
 
 import com.octo.niobenchmark.httpcore.async.latency.AsyncLatencyServer;
 import com.octo.niobenchmark.httpcore.util.ConsumeCPU;
+import com.octo.niobenchmark.httpcore.util.GaussianGenerator;
 import com.octo.niobenchmark.httpcore.util.HTTPRequest;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -37,7 +38,7 @@ public final class AsyncCPURequestHandler implements HttpAsyncRequestHandler<Htt
             @Override
             public void run() {
                 if (cpu >= 0)
-                    ConsumeCPU.consumeCpuInMillisecond(cpu);
+                    ConsumeCPU.consumeCpuInMillisecond(Math.round(cpu * GaussianGenerator.getValue()));
                 if (Integer.valueOf(latency) >= 0)
                     HTTPRequest.sendReactiveRequest(AsyncLatencyServer.URL, Collections.singletonMap("latency", latency), httpexchange);
                 else {
