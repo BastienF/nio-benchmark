@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class SyncCPURequestHandler implements HttpRequestHandler {
-    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    private ExecutorService executor = Executors.newFixedThreadPool(200);//Runtime.getRuntime().availableProcessors());
 
     @Override
     public void handle(HttpRequest httpRequest, final HttpResponse response, HttpContext httpContext) throws HttpException, IOException {
@@ -31,8 +31,10 @@ public final class SyncCPURequestHandler implements HttpRequestHandler {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                ConsumeCPU.consumeCpuInMillisecond(cpu);
-                HTTPRequest.sendRequest(SyncLatencyServer.URL, Collections.singletonMap("latency", latency));
+                if (cpu >= 0)
+                    ConsumeCPU.consumeCpuInMillisecond(cpu);
+                if (Integer.valueOf(latency) >= 0)
+                    HTTPRequest.sendRequest(SyncLatencyServer.URL, Collections.singletonMap("latency", latency));
                 response.setStatusCode(HttpStatus.SC_OK);
                 response.setEntity(new NStringEntity("Ok", ContentType.create("text/html", "UTF-8")));
                 latch.countDown();

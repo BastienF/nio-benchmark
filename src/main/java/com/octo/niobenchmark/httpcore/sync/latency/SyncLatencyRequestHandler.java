@@ -15,7 +15,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public final class SyncLatencyRequestHandler implements HttpRequestHandler {
-    private ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+    private ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(200);
 
     @Override
     public void handle(HttpRequest httpRequest, final HttpResponse response, HttpContext httpContext) throws HttpException, IOException {

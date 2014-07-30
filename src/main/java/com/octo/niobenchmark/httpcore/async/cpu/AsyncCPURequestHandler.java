@@ -32,8 +32,10 @@ public final class AsyncCPURequestHandler implements HttpAsyncRequestHandler<Htt
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                ConsumeCPU.consumeCpuInMillisecond(cpu);
-                HTTPRequest.sendReactiveRequest(AsyncLatencyServer.URL, Collections.singletonMap("latency", latency), httpexchange);
+                if (cpu >= 0)
+                    ConsumeCPU.consumeCpuInMillisecond(cpu);
+                if (Integer.valueOf(latency) >= 0)
+                    HTTPRequest.sendReactiveRequest(AsyncLatencyServer.URL, Collections.singletonMap("latency", latency), httpexchange);
             }
         });
     }

@@ -19,6 +19,7 @@ public class SyncCPUServer {
         SyncServer syncServer = new SyncServer(THREADS, PORT);
         syncServer.register("/war/sync/cpu", new SyncCPURequestHandler());
         syncServer.start();
+        System.out.println("Server started");
 	}
 
 }

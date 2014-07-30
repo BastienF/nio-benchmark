@@ -17,6 +17,7 @@ public class SyncLatencyServer {
         SyncServer syncServer = new SyncServer(THREADS, PORT);
         syncServer.register("/war/sync/latency", new SyncLatencyRequestHandler());
         syncServer.start();
+        System.out.println("Server started");
 	}
 
 }
