@@ -20,6 +20,7 @@ public class SyncCPUServer {
         GaussianGenerator.init();
         SyncServer syncServer = new SyncServer(THREADS, PORT);
         syncServer.register("/war/sync/cpu", new SyncCPURequestHandler());
+        syncServer.register("/war/mock/sync/cpu", new SyncCPUMockRequestHandler());
         syncServer.start();
         System.out.println("Server started");
 	}
