@@ -19,7 +19,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public final class AsyncCPUMockRequestHandler implements HttpAsyncRequestHandler<HttpRequest> {
-    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() - 1);
     private ScheduledThreadPoolExecutor scheduledExecutor = new ScheduledThreadPoolExecutor(1);
 
     @Override
