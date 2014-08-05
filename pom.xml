@@ -165,6 +165,23 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>ASyncMetricsServer</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>target/AsyncLatencyServer.jar</outputFile>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.octo.niobenchmark.httpcore.metrics.AsyncMetricServer
+                                    </mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>TestServer</id>
                         <phase>package</phase>
                         <goals>
