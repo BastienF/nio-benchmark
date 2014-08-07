@@ -1,6 +1,6 @@
 package com.octo.niobenchmark.httpcore.sync.cpu;
 
-import com.octo.niobenchmark.httpcore.sync.latency.SyncLatencyServer;
+import com.octo.niobenchmark.httpcore.async.latency.AsyncLatencyServer;
 import com.octo.niobenchmark.httpcore.util.ConsumeCPU;
 import com.octo.niobenchmark.httpcore.util.GaussianGenerator;
 import com.octo.niobenchmark.httpcore.util.HTTPRequest;
@@ -39,7 +39,7 @@ public final class SyncCPURequestHandler implements HttpRequestHandler {
                 if (cpu >= 0)
                     ConsumeCPU.consumeCpuInMillisecond(Math.round(cpu * GaussianGenerator.getValue()));
                 if (Integer.valueOf(latency) >= 0)
-                    HTTPRequest.sendRequest(SyncLatencyServer.URL, Collections.singletonMap("latency", latency));
+                    HTTPRequest.sendRequest(AsyncLatencyServer.URL, Collections.singletonMap("latency", latency));
                 response.setStatusCode(HttpStatus.SC_OK);
                 response.setEntity(new NStringEntity("Ok", ContentType.create("text/html", "UTF-8")));
                 latch.countDown();
