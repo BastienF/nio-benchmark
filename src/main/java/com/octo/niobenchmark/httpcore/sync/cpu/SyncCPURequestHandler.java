@@ -20,7 +20,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class SyncCPURequestHandler implements HttpRequestHandler {
-    private ExecutorService executor = Executors.newFixedThreadPool(200);//Runtime.getRuntime().availableProcessors());
+    private ExecutorService executor;
+
+    public SyncCPURequestHandler (int nbThreads) {
+        executor = Executors.newFixedThreadPool(nbThreads);
+    }
 
     @Override
     public void handle(HttpRequest httpRequest, final HttpResponse response, HttpContext httpContext) throws HttpException, IOException {

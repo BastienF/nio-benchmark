@@ -45,14 +45,14 @@ fi
 if [ -z "$async" ]; then
 	async=false
 fi
-
+latencyServer="./target/AsyncLatencyServer.jar"
 if [ "$async" = true ] ; then
-	latencyServer="./target/AsyncLatencyServer.jar"
+	#latencyServer="./target/AsyncLatencyServer.jar"
 	cpuServer="./target/AsyncCPUServer.jar"
 	cpuURL="http://localhost:8089/war/async/cpu"
 else
-	latencyServer="./target/SyncLatencyServer.jar"
-	cpuServer="./target/SyncCPUServer.jar"
+	#latencyServer="./target/SyncLatencyServer.jar"
+	cpuServer="./target/SyncCPUServer.jar $c"
 	cpuURL="http://localhost:8089/war/sync/cpu"
 fi
 

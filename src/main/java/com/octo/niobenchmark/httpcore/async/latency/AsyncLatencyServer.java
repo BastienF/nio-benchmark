@@ -18,8 +18,8 @@ public class AsyncLatencyServer {
         GaussianGenerator.init();
         AsyncServer asyncServer = new AsyncServer(THREADS, PORT);
         asyncServer.register("/war/async/latency", new AsyncLatencyRequestHandler());
-        asyncServer.start();
         System.out.println("Server started");
+        asyncServer.start();
 	}
 
 }

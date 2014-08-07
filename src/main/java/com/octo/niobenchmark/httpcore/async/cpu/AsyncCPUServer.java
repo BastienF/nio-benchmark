@@ -19,8 +19,8 @@ public class AsyncCPUServer {
         AsyncServer asyncServer = new AsyncServer(THREADS, PORT);
         asyncServer.register("/war/async/cpu", new AsyncCPURequestHandler());
         asyncServer.register("/war/mock/async/cpu", new AsyncCPUMockRequestHandler());
-        asyncServer.start();
         System.out.println("Server started");
+        asyncServer.start();
     }
 
 }

@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class AsyncCPURequestHandler implements HttpAsyncRequestHandler<HttpRequest> {
-    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()-1);
+    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     @Override
     public HttpAsyncRequestConsumer<HttpRequest> processRequest(final HttpRequest request, final HttpContext context) {
@@ -33,6 +33,7 @@ public final class AsyncCPURequestHandler implements HttpAsyncRequestHandler<Htt
         final String[] params = request.getRequestLine().getUri().split("\\?")[1].split("\\&");
         final int cpu = Integer.valueOf(params[0].split("\\=")[1]);
         final String latency = params[1].split("\\=")[1];
+
 
         executor.execute(new Runnable() {
             @Override

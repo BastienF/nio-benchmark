@@ -14,12 +14,16 @@ public class SyncCPUServer {
 			+ SyncCPUServer.PORT + "/war/cpu";
 
 	public static void main(String[] args) throws Exception {
-
+        int nbThreads = 200;
+        if (args.length >= 1) {
+            nbThreads = Integer.valueOf(args[0]);
+        }
+        System.out.println("nbThreads : " + nbThreads);
         ConsumeCPU.consumeCpuInMillisecond(1000);
         HTTPRequest.init();
         GaussianGenerator.init();
         SyncServer syncServer = new SyncServer(THREADS, PORT);
-        syncServer.register("/war/sync/cpu", new SyncCPURequestHandler());
+        syncServer.register("/war/sync/cpu", new SyncCPURequestHandler(nbThreads));
         syncServer.register("/war/mock/sync/cpu", new SyncCPUMockRequestHandler());
         syncServer.start();
         System.out.println("Server started");

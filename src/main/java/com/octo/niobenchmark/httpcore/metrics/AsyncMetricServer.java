@@ -11,9 +11,9 @@ public class AsyncMetricServer {
 
 	public static void main(String[] args) throws Exception {
         AsyncServer asyncServer = new AsyncServer(THREADS, PORT);
-        asyncServer.register(METRICS_URL + "/collectd", new AsyncCollectdRequestHandler());
-       // asyncServer.register("/start", new AsyncStartRequestHandler());
-       // asyncServer.register("/stop", new AsyncStopRequestHandler());
+        asyncServer.register("/war/metrics/collectd", new AsyncCollectdRequestHandler());
+        asyncServer.register("/start", new AsyncStartRequestHandler());
+        asyncServer.register("/stop", new AsyncStopRequestHandler());
         asyncServer.start();
         System.out.println("Server started");
     }
